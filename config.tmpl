@@ -1,0 +1,9 @@
+[template]
+src = "nginx.tmpl"
+dest = "/sites-enabled/nginx.cfg"
+prefix = "/nginx/hosts/{{ getv "/project" }}"
+keys = [
+  "/nginx/hosts/{{ getv "/project" }}"
+]
+check_cmd  = "nginx -t"
+reload_cmd = "nginx -s reload"

@@ -1,0 +1,6 @@
+[template]
+src = "config.tmpl"
+dest = "/etc/confd/conf.d/nginx.toml"
+keys = [
+  "/project"
+]

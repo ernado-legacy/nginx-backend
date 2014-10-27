@@ -1,0 +1,16 @@
+{{range $dir := ls "/nginx/hosts"}}
+{{$custdir := printf "/nginx/hosts/%s/web/" $dir}}
+upstream {{ $dir }} {
+{{ range ls $custdir }}    server {{.}};{{ end }}
+}
+{{end}}
+
+{{range $dir := ls "/nginx/hosts"}}
+server {
+    server_name  {{$hostname := printf "/nginx/hosts/%s/hostname" $dir}}{{ getv $hostname }};
+    location / {
+        proxy_pass http://{{ $dir }};
+        include    /etc/nginx/includes/proxy.cfg;
+   }
+}
+{{end}}

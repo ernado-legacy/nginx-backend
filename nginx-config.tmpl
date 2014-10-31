@@ -1,0 +1,9 @@
+[template]
+src = "nginx.tmpl"
+dest = "/etc/nginx/sites-enabled/backend.cfg"
+prefix = "/nginx/hosts/{{ getv "/project" }}"
+keys = [
+  "/app"
+]
+check_cmd  = "nginx -t"
+reload_cmd = "nginx -s reload"
